@@ -1,1 +1,54 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~@nebular/theme/styles/theming";
+@import "~@nebular/theme/styles/themes/default";
+@import url('https://fonts.googleapis.com/css?family=Exo&display=swap');
+html, body { height: 100%; }
+// body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.badge {
+    display: inline-block;
+    padding: 0.25em 0.4em;
+        padding-right: 0.4em;
+        padding-left: 0.4em;
+    font-size: 85%;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0.25rem;
+}
+
+.badge-pill {
+
+    padding-right: 0.6em;
+    padding-left: 0.6em;
+    border-radius: 10rem;
+
+}
+
+.badge-success {
+    color: #fff;
+    background-color: #28a745;
+}
+
+.badge-failure {
+    color: #fff;
+    background-color: #d32f2f;
+}
+
+.small-card{
+    width:20%;
+    text-align: center;    
+}
+
+.bord-new{
+    border-radius: 1.20rem;
+}
+
+table {
+    width: 100%;
+  }
+
+  th.mat-sort-header-sorted {
+    color: black;
+  }

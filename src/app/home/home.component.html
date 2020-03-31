@@ -1,1 +1,25 @@
-<div class="row"></div>
+<div class="row">
+    <div class="col-sm-12">
+        <nb-card style="width: 30%;margin:4% auto;">
+            <nb-card-header style="text-align: center;font-family: 'Exo', sans-serif;">
+                Effort Management App
+            </nb-card-header>
+            <nb-card-body style="text-align: center;">
+                <input nbInput placeholder="Enter username" [(ngModel)]="username" type="text">
+            </nb-card-body>
+            <nb-card-body  style="text-align: center;">
+                <input nbInput placeholder="Enter password" [(ngModel)]="password" type="password">
+            </nb-card-body>
+            <nb-card-body>
+                <nb-radio-group [(ngModel)]="selectedView">
+                    <nb-radio value="state">State Dashboard</nb-radio>
+                    <nb-radio value="district">District Dashboard</nb-radio>
+                    <nb-radio value="mo">MO Dashboard</nb-radio>
+                  </nb-radio-group>
+            </nb-card-body>
+            <nb-card-footer style="text-align: center;font-family: 'Exo', sans-serif;">
+                <button nbButton status="info" size="xsmall" [disabled]="!selectedView" (click)="login()">Login</button>
+            </nb-card-footer>
+        </nb-card>
+    </div>
+</div>

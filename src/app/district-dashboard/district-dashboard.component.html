@@ -1,0 +1,218 @@
+<div style="width: 100%;display: flex;flex-direction: row;justify-content: space-evenly;">
+    
+    <nb-card class="small-card bord-new">
+        <nb-card-header>
+             confirmed +ve cases 
+        </nb-card-header>
+        <nb-card-footer>
+                23 <span class="badge badge-failure badge-pill">5 %</span>
+        </nb-card-footer>
+    </nb-card>
+
+
+    <nb-card class="small-card bord-new">
+        <nb-card-header>
+            Total cured 
+        </nb-card-header>
+        <nb-card-footer>
+                5 <span class="badge badge-success badge-pill">3 %</span>
+        </nb-card-footer>
+    </nb-card>
+
+    
+    <nb-card class="small-card bord-new">
+        <nb-card-header>
+            Quarantined citizens 
+        </nb-card-header>
+        <nb-card-footer>
+                23 <span class="badge badge-success badge-pill">4 %</span>
+        </nb-card-footer>
+    </nb-card>
+
+    <nb-card class="small-card bord-new">
+        <nb-card-header>
+            Deaths 
+        </nb-card-header>
+        <nb-card-footer>
+                23 <span class="badge badge-failure badge-pill">1 %</span>
+        </nb-card-footer>
+    </nb-card>
+</div>
+
+<div style="width: 100%;">
+<nb-card class="bord-new">
+    <nb-card-body>
+        <div id="timeline" style="width: 100%;height: 400px;"></div>
+    </nb-card-body>
+</nb-card>
+
+</div>
+
+<div style="width: 100%;display: flex;flex-direction: row;justify-content: space-between; flex-wrap: nowrap;">
+    <nb-card class="bord-new" style="width: 17%;" *ngFor="let id of ids">
+        <nb-card-header>{{vals[id].name}}</nb-card-header>
+        <nb-card-body>
+            <div id="{{id}}" style="width: 100%;height: 170px;"></div>
+        </nb-card-body>
+    </nb-card>
+    </div>
+
+    <div style="width: 100%;">
+        <nb-card class="bord-new">
+            <nb-card-header>
+Citizens under quarantine 
+
+            </nb-card-header>
+            <nb-card-header style="display: flex;flex-direction: row;align-items: center;">
+                <span>Filter by </span> <nb-checkbox style="padding-left: 10px;">Alarm raised </nb-checkbox>
+                <nb-checkbox style="padding-left: 10px;">Gone out of radius </nb-checkbox>
+                <nb-checkbox style="padding-left: 10px;">Picture upload missing </nb-checkbox>  
+                <nb-checkbox style="padding-left: 10px;">GPS off </nb-checkbox>  
+
+                </nb-card-header>
+            <nb-card-body>
+                <!-- <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia"> -->
+                <table mat-table [dataSource]="dataSource" matSort>
+                    <!--- Note that these columns can be defined in any order.
+                          The actual rendered columns are set as a property on the row definition" -->
+                          <ng-container matColumnDef="id">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+                            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+                          </ng-container>
+
+                    <ng-container matColumnDef="name">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header> name </th>
+                      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                    </ng-container>
+          
+                    <ng-container matColumnDef="age">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header> age </th>
+                      <td mat-cell *matCellDef="let element"> {{element.age}} </td>
+                    </ng-container>
+                  
+              
+                    <ng-container matColumnDef="qurantineDay">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header> qurantineDay </th>
+                      <td mat-cell *matCellDef="let element"> {{element.qurantineDay}} </td>
+                    </ng-container>
+                  
+   
+                    <ng-container matColumnDef="GPSoff">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header> GPSoff </th>
+                      <td mat-cell *matCellDef="let element"> {{element.GPSoff}} </td>
+                    </ng-container>
+
+     
+                     <ng-container matColumnDef="raisedAlarm">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> raisedAlarm </th>
+                        <td mat-cell *matCellDef="let element"> {{element.raisedAlarm}} </td>
+                      </ng-container>
+                    
+  
+                      <ng-container matColumnDef="areapincode">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> areapincode </th>
+                        <td mat-cell *matCellDef="let element"> {{element.areapincode}} </td>
+                      </ng-container>
+                
+                      <ng-container matColumnDef="goneOutsideRadius">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> goneOutsideRadius </th>
+                        <td mat-cell *matCellDef="let element"> {{element.goneOutsideRadius}} </td>
+                      </ng-container>
+
+                        <ng-container matColumnDef="photoMissing">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> photoMissing </th>
+                            <td mat-cell *matCellDef="let element"> {{element.photoMissing}} </td>
+                          </ng-container>
+
+                      <ng-container matColumnDef="notifyMO">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> notifyMO </th>
+                        <td mat-cell *matCellDef="let element"> <button nbButton status="info" size="xsmall" (click)="notifyMO(element)">Notify MO</button> </td>
+                      </ng-container>
+                  
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                  </table>
+                  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+            </nb-card-body>
+        </nb-card>
+    </div>
+
+    <div style="width: 100%;">
+        <nb-card class="bord-new">
+            <nb-card-header>
+Request Raised 
+
+            </nb-card-header>
+            <nb-card-header style="display: flex;flex-direction: row;align-items: center;">
+                <span>Filter by </span> <nb-checkbox style="padding-left: 10px;">Alarm raised </nb-checkbox>
+                <nb-checkbox style="padding-left: 10px;">Gone out of radius </nb-checkbox>
+                <nb-checkbox style="padding-left: 10px;">Picture upload missing </nb-checkbox>  
+                <nb-checkbox style="padding-left: 10px;">GPS off </nb-checkbox>  
+
+                </nb-card-header>
+            <nb-card-body>
+                <!-- <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia"> -->
+                <table mat-table [dataSource]="raisedRequestDataSet" matSort>
+                    <!--- Note that these columns can be defined in any order.
+                          The actual rendered columns are set as a property on the row definition" -->
+                          <ng-container matColumnDef="id">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+                            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+                          </ng-container>
+
+                    <ng-container matColumnDef="name">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header> name </th>
+                      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                    </ng-container>
+          
+                    <ng-container matColumnDef="age">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header> age </th>
+                      <td mat-cell *matCellDef="let element"> {{element.age}} </td>
+                    </ng-container>
+                  
+              
+                    <ng-container matColumnDef="qurantineDay">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header> qurantineDay </th>
+                      <td mat-cell *matCellDef="let element"> {{element.qurantineDay}} </td>
+                    </ng-container>
+                  
+   
+                    <ng-container matColumnDef="GPSoff">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header> GPSoff </th>
+                      <td mat-cell *matCellDef="let element"> {{element.GPSoff}} </td>
+                    </ng-container>
+
+     
+                     <ng-container matColumnDef="raisedAlarm">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> raisedAlarm </th>
+                        <td mat-cell *matCellDef="let element"> {{element.raisedAlarm}} </td>
+                      </ng-container>
+                    
+  
+                      <ng-container matColumnDef="areapincode">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> areapincode </th>
+                        <td mat-cell *matCellDef="let element"> {{element.areapincode}} </td>
+                      </ng-container>
+                
+                      <ng-container matColumnDef="goneOutsideRadius">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> goneOutsideRadius </th>
+                        <td mat-cell *matCellDef="let element"> {{element.goneOutsideRadius}} </td>
+                      </ng-container>
+
+                        <ng-container matColumnDef="photoMissing">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> photoMissing </th>
+                            <td mat-cell *matCellDef="let element"> {{element.photoMissing}} </td>
+                          </ng-container>
+
+                      <ng-container matColumnDef="notifyMO">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> notifyMO </th>
+                        <td mat-cell *matCellDef="let element"> <button nbButton status="info" size="xsmall" (click)="notifyMO(element)">Notify MO</button> </td>
+                      </ng-container>
+                  
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                  </table>
+                  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+            </nb-card-body>
+        </nb-card>
+    </div>
