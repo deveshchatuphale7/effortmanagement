@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "node main.js",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -40,7 +40,11 @@
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
     "xlsx": "^0.15.5",
-    "zone.js": "~0.9.1"
+    "zone.js": "~0.9.1",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mongodb": "^3.5.5",
+    "uuid": "^7.0.2"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.802.0",
@@ -63,5 +67,10 @@
     "ts-node": "~7.0.0",
     "tslint": "~5.15.0",
     "typescript": "~3.5.3"
+  },
+  "engines": {
+    "node": "10.x",
+    "npm": "6.4.1"
   }
+
 }
