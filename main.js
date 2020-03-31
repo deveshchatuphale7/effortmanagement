@@ -9,10 +9,6 @@ var cors = require('cors')
 var app = express();
 app.use(cors());
 
-app.use(express.static(__dirname + '/dist/eftMgmt'));
-app.get('/', function(req, res) {
-  res.sendFile(path.join(__dirname+'/dist/dashboard/index.html'));
-});
 
 // app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
